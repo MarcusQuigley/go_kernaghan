@@ -1,8 +1,15 @@
+
 # Binaries
 *.exe
 *.o
 *.a
-
+# Ignore all
+*
+# unignore all with exts
+!*.*
+#?
+#!/**/
+!*/
 # Test binary and results
 *_test
 *.test
@@ -25,6 +32,5 @@ go.sum
 *~
 # Log Files
 *.log
- 
 
- 
+
