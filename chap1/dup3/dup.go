@@ -9,7 +9,7 @@ import (
 func main() {
 	counts := make(map[string]int)
 	for _, filename := range os.Args[1:] {
-		data, e := os.ReadFile(filename)
+		data, e := os.ReadFile(filename) //reads whole contents
 		if e != nil {
 			fmt.Fprintf(os.Stderr, "dup3: %v\n", e)
 			continue

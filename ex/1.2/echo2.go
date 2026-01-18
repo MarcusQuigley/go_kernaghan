@@ -3,17 +3,23 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
 	concat(os.Args[:])
-
+	//join(os.Args[:])
 }
+
 func concat(args []string) {
-	var s, sep string
+	var s string
 	for i := 0; i < len(args); i++ {
-		s += sep + args[i]
-		sep = " "
+		s += fmt.Sprintf("%v. %s\n", i, args[i])
+		//sep = " "
 	}
 	fmt.Println(s)
+}
+
+func join(args []string) {
+	fmt.Println(strings.Join(args, " "))
 }
