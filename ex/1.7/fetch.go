@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -12,16 +11,14 @@ func main() {
 	for _, url := range os.Args[1:] {
 		resp, e := http.Get(url)
 		if e != nil {
-			log.Print(e)
+			log.Printf("Get %v\n", e)
 			continue
 		}
 		defer resp.Body.Close()
-		b, e := io.ReadAll(resp.Body)
-
+		_, e = io.Copy(os.Stdout, resp.Body)
 		if e != nil {
-			log.Print("error reading", e)
+			log.Printf("Get %v\n", e)
 			continue
 		}
-		fmt.Printf("%s\n", b)
 	}
 }
