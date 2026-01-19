@@ -13,8 +13,10 @@
 # Test binary and results
 *_test
 *.test
-testdata
 
+testdata
+testresults
+/bin/*
 # Dependencies (if using vendoring or modules)
 /vendor/
 go.sum

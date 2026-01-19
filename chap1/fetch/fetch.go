@@ -3,25 +3,37 @@ package main
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
+	"strings"
+	"time"
 )
 
 func main() {
+	start := time.Now()
+	var datalength int
 	for _, url := range os.Args[1:] {
-		resp, e := http.Get(url)
-		if e != nil {
-			log.Print(e)
-			continue
-		}
-		defer resp.Body.Close()
-		b, e := io.ReadAll(resp.Body)
-
-		if e != nil {
-			log.Print("error reading", e)
-			continue
-		}
-		fmt.Printf("%s\n", b)
+		datalength += fetch(url)
 	}
+
+	fmt.Printf("size: %d - elapsed: %v\n", datalength, time.Since(start).Seconds())
+}
+
+func fetch(url string) int {
+
+	if !strings.HasPrefix(url, "http://") {
+		url = "http://" + url
+	}
+	response, e := http.Get(url)
+	if e != nil {
+		fmt.Fprintf(os.Stderr, "error getting: %v", e)
+		return 0
+	}
+	defer response.Body.Close()
+	data, e := io.ReadAll(response.Body)
+	if e != nil {
+		fmt.Fprintf(os.Stderr, "error reading: %v", e)
+		return 0
+	}
+	return len(data)
 }
