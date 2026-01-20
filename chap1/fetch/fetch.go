@@ -20,7 +20,6 @@ func main() {
 }
 
 func fetch(url string) int {
-
 	if !strings.HasPrefix(url, "http://") {
 		url = "http://" + url
 	}
@@ -30,10 +29,12 @@ func fetch(url string) int {
 		return 0
 	}
 	defer response.Body.Close()
-	data, e := io.ReadAll(response.Body)
+	data, e := io.Copy(io.Discard, response.Body)
+
+	//data, e:= io.ReadAll(response.Body)
 	if e != nil {
 		fmt.Fprintf(os.Stderr, "error reading: %v", e)
 		return 0
 	}
-	return len(data)
+	return int(data) // len(data)
 }
