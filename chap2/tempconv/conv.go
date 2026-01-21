@@ -1,9 +1,9 @@
 package tempconv
 
-func (f Fahrenheit) FToC() Celcius {
-	return Celcius((f - 32) * 5 / 9)
+func (f Fahrenheit) FToC() Celsius {
+	return Celsius((f - 32) * 5 / 9)
 }
 
-func (c Celcius) CToF() Fahrenheit {
+func (c Celsius) CToF() Fahrenheit {
 	return Fahrenheit(c*9/5 + 32)
 }

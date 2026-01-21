@@ -2,9 +2,9 @@ package tempconv
 
 import "testing"
 
-var testCelciusCases = []struct {
+var testCelsiusCases = []struct {
 	description string
-	in          Celcius
+	in          Celsius
 	expected    Fahrenheit
 }{
 	{
@@ -15,9 +15,9 @@ var testCelciusCases = []struct {
 }
 
 func TestCtoF(t *testing.T) {
-	for _, tc := range testCelciusCases {
+	for _, tc := range testCelsiusCases {
 		t.Run(tc.description, func(t *testing.T) {
-			var c Celcius = tc.in
+			var c Celsius = tc.in
 			got := c.CToF()
 			if got != tc.expected {
 				t.Errorf("got %v. wanted %v", got, tc.expected)
@@ -30,7 +30,7 @@ func TestCtoF(t *testing.T) {
 var testFahrenheitCases = []struct {
 	description    string
 	in             Fahrenheit
-	expected       Celcius
+	expected       Celsius
 	expectedString string
 }{
 	{
