@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"kernaghan/chap2/tempconv"
-	conversions "kernaghan/ex/2.2/tempconv"
+	conversions "kernaghan/ex/chap2/2.2/tempconv"
 	"os"
 	"strconv"
 )
