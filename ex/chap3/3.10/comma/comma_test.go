@@ -47,29 +47,29 @@ func TestAddCommaBuffer(t *testing.T) {
 	}
 }
 
-// func TestAddCommaBuilder(t *testing.T) {
-// 	for _, tc := range testCases {
-// 		t.Run(tc.description, func(t *testing.T) {
-// 			got := AddCommaBuilder(tc.in)
-// 			if got != tc.expected {
-// 				t.Errorf("got %s. wanted %s", got, tc.expected)
-// 			}
-// 		})
-// 	}
-// }
+func TestAddCommaBuilder(t *testing.T) {
+	for _, tc := range testCases {
+		t.Run(tc.description, func(t *testing.T) {
+			got := AddCommaBuilder(tc.in)
+			if got != tc.expected {
+				t.Errorf("got %s. wanted %s", got, tc.expected)
+			}
+		})
+	}
+}
 
-// func BenchmarkAddCommaBuilder(b *testing.B) {
-// 	if testing.Short() {
-// 		b.Skip("skipping BM Join")
-// 	}
-// 	for i := 0; i < b.N; i++ {
-// 		{
-// 			for _, tc := range testCases {
-// 				AddCommaBuilder(tc.in)
-// 			}
-// 		}
-// 	}
-// }
+func BenchmarkAddCommaBuilder(b *testing.B) {
+	if testing.Short() {
+		b.Skip("skipping BM Join")
+	}
+	for i := 0; i < b.N; i++ {
+		{
+			for _, tc := range testCases {
+				AddCommaBuilder(tc.in)
+			}
+		}
+	}
+}
 
 func BenchmarkAddCommaBuffer(b *testing.B) {
 	if testing.Short() {
