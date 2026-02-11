@@ -23,7 +23,6 @@ var testPopCountCases = []struct {
 func TestPopCount(t *testing.T) {
 	for _, tc := range testPopCountCases {
 		t.Run(tc.description, func(t *testing.T) {
-
 			got := PopCount(tc.in)
 			if got != tc.expected {
 				t.Errorf("got %d. wanted %0d", got, tc.expected)

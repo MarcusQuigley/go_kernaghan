@@ -14,6 +14,8 @@ func init() {
 		pc[i] = pc[i/2] + byte(i&1)
 	}
 }
+
+// 0.3855 ns/op          0 B/op          0 allocs/op
 func PopCount(x uint64) int {
 	return int(pc[byte(x>>(0*8))] +
 		pc[byte(x>>(1*8))] +
@@ -25,6 +27,7 @@ func PopCount(x uint64) int {
 		pc[byte(x>>(7*8))])
 }
 
+// 4.106 ns/op           0 B/op          0 allocs/op
 func PopCountIter(x uint64) int {
 	var result byte
 	for i := range 8 {
@@ -32,6 +35,7 @@ func PopCountIter(x uint64) int {
 	}
 	return int(result)
 }
+
 func main() {
 	for _, num := range os.Args[1:] {
 		x, err := strconv.ParseUint(num, 10, 64)
