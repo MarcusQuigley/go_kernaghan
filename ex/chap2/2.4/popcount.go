@@ -16,9 +16,25 @@ func init() {
 }
 
 // 0.3837 ns/op           0 B/op          0 allocs/op
+//
+//	func PopCount(x uint64) int {
+//		var result int
+//		for range 64 {
+//			if x&1 == 1 {
+//				result++
+//			}
+//			x >>= 1
+//		}
+//		return result
+//	}
+
+// 26.70 ns/op            0 B/op          0 allocs/op
 func PopCount(x uint64) int {
 	var result int
 	for range 64 {
+		if x == 0 {
+			break
+		}
 		if x&1 == 1 {
 			result++
 		}
@@ -26,7 +42,6 @@ func PopCount(x uint64) int {
 	}
 	return result
 }
-
 func main() {
 	for _, num := range os.Args[1:] {
 		x, err := strconv.ParseUint(num, 10, 64)

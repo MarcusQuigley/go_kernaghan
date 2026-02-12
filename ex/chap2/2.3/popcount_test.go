@@ -17,6 +17,16 @@ var testPopCountCases = []struct {
 		in:          15,
 		expected:    4,
 	},
+	{
+		description: "pc[16]=1",
+		in:          16,
+		expected:    1,
+	},
+	{
+		description: "pc[160]=2",
+		in:          160,
+		expected:    2,
+	},
 }
 
 // 0.3852 ns/op          0 B/op          0 allocs/op
