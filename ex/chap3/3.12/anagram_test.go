@@ -45,6 +45,13 @@ var testCases = []struct {
 		inb:         "好天气个啊好天气是，天今",
 		expected:    true,
 	},
+
+	{"a's", "a", "a", true},
+	{"a and b", "a", "b", false},
+	{"abc both", "abc", "cba", true},
+	{"aabb both", "aabb", "abab", true},
+	{"multicase true", "aAbBcC", "abcABC", true},
+	{"multicase false", "aAbBcC", "abcABc", false},
 }
 
 func TestAHasAnagram(t *testing.T) {
@@ -66,6 +73,30 @@ func BenchmarkHasAnagram(b *testing.B) {
 		{
 			for _, tc := range testCases {
 				HasAnagram(tc.ina, tc.inb)
+			}
+		}
+	}
+}
+
+func TestAHasAnagram2(t *testing.T) {
+	for _, tc := range testCases {
+		t.Run(tc.description, func(t *testing.T) {
+			got := HasAnagram2(tc.ina, tc.inb)
+			if got != tc.expected {
+				t.Errorf("got %t. wanted %t", got, tc.expected)
+			}
+		})
+	}
+}
+
+func BenchmarkHasAnagram2(b *testing.B) {
+	if testing.Short() {
+		b.Skip("skipping BM Join")
+	}
+	for i := 0; i < b.N; i++ {
+		{
+			for _, tc := range testCases {
+				HasAnagram2(tc.ina, tc.inb)
 			}
 		}
 	}

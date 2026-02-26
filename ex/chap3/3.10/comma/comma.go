@@ -67,3 +67,20 @@ func AddComma(s string) string {
 	}
 	return buf.String()
 }
+
+func AddComma2(s string) string {
+	n := len(s)
+	if n <= 3 {
+		return s
+	}
+	//12345
+	var buf bytes.Buffer
+	for i := range n {
+		if (n-i)%3 == 0 {
+			buf.WriteRune(',')
+		}
+		buf.WriteByte(s[i])
+	}
+
+	return buf.String()
+}

@@ -60,6 +60,19 @@ var testCases = []struct {
 	},
 }
 
+var testCases2 = []struct {
+	description string
+	in          string
+	expected    string
+}{
+
+	{
+		description: "2 commas with positive",
+		in:          "+1234567",
+		expected:    "+1,234,567",
+	},
+}
+
 func TestAddComma(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.description, func(t *testing.T) {
@@ -79,6 +92,30 @@ func BenchmarkAddComma(b *testing.B) {
 		{
 			for _, tc := range testCases {
 				AddComma(tc.in)
+			}
+		}
+	}
+}
+
+func TestAddComma1(t *testing.T) {
+	for _, tc := range testCases {
+		t.Run(tc.description, func(t *testing.T) {
+			got := AddComma1(tc.in)
+			if got != tc.expected {
+				t.Errorf("got %s. wanted %s", got, tc.expected)
+			}
+		})
+	}
+}
+
+func BenchmarkAddComma1(b *testing.B) {
+	if testing.Short() {
+		b.Skip("skipping BM Join")
+	}
+	for i := 0; i < b.N; i++ {
+		{
+			for _, tc := range testCases {
+				AddComma1(tc.in)
 			}
 		}
 	}
