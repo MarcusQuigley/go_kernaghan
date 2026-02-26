@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"strconv"
 )
 
 func main() {
@@ -25,5 +26,12 @@ func musings() {
 	fmt.Println(buf.String())
 	buf.WriteString("sh1")
 	fmt.Println(buf.String())
+
+	y, e := strconv.ParseInt("123", 10, 8)
+	if e == nil {
+		fmt.Printf("type\t%T\t value\t%v", y, y)
+	} else {
+		fmt.Println("ERROR: ", e)
+	}
 
 }
