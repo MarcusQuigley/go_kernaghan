@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func zero(arr *[32]byte) {
 	for i := range arr {
@@ -62,9 +64,31 @@ func slicesmess() {
 	fmt.Println("zz:", zz)
 }
 
+func doublelices(sl []int) { //[]int {
+	for i := range sl {
+		sl[i] *= 2
+	}
+	//return sl
+}
+
+func doublearray(arr *[3]int) {
+	for i := range arr {
+		(*arr)[i] *= 2
+	}
+}
+
 func main() {
+	sli := []int{1, 2, 3}
+	fmt.Println(sli)
+	//slxx := doublelices(sli)
+	doublelices(sli)
+	fmt.Println(sli)
+	ari := [3]int{10, 20, 30}
+	fmt.Println(ari)
+	doublearray(&ari)
+	fmt.Println(ari)
 	//slicesmess()
-	check_nonempty()
+	//check_nonempty()
 }
 
 // len:10	cap:10	 [1 2 3 4 5 6 7 8 9 10]
